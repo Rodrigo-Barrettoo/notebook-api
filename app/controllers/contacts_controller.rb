@@ -6,6 +6,21 @@ class ContactsController < ApplicationController
     @contacts = Contact.all
 
     render json: @contacts
+    
+    # only = traga somente (...)
+    # except = não traga (...)
+    # render json: @contacts, only: [:name, :email]
+    # render json: @contacts, except: [:created_at]
+
+    # forma tradicional com map, add atributo novo
+    # render json: @contacts.map{|contact|
+    #   contact.attributes.merge({ author: "Barretin"})
+    # }
+
+    # forma mais interessante que o map
+    # com methods basta criar o metodo no model
+    # com as_json fica global o methods
+    # render json: @contacts, methods: :author
   end
 
   # GET /contacts/1
