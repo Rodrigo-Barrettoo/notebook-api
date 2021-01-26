@@ -5,8 +5,8 @@ class ContactsController < ApplicationController
   def index
     @contacts = Contact.all
 
-    render json: @contacts
-    
+    render json: @contacts # , methods: :birthdate_br
+
     # only = traga somente (...)
     # except = não traga (...)
     # render json: @contacts, only: [:name, :email]
@@ -25,7 +25,7 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1
   def show
-    render json: @contact #, include: :kind
+    render json: @contact.to_br #, include: :kind
   end
 
   # POST /contacts
