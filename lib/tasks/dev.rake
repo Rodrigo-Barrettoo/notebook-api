@@ -3,8 +3,8 @@ namespace :dev do
 
   task setup: :environment do
     kinds = ['Amigos', 'Comercial', 'Conhecido']
-    
-    kinds.each do |kind| 
+
+    kinds.each do |kind|
       Kind.create!(
         description: kind
       )
@@ -19,6 +19,16 @@ namespace :dev do
         birthdate: Faker::Date.between(from: 35.years.ago, to: 18.years.ago),
         kind: Kind.all.sample
       )
+    end
+
+    ####
+
+    Contact.all.each do |contact|
+      Random.rand(5).times do |i|
+        phone = Phone.create!(number: Faker::PhoneNumber.cell_phone)
+        contact.phones << phone
+        contact.save
+      end
     end
   end
 
